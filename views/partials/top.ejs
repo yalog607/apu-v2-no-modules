@@ -1,0 +1,66 @@
+<!-- Navbar -->
+
+<nav
+class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+id="layout-navbar"
+>
+<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+  <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+    <i class="bx bx-menu bx-sm"></i>
+  </a>
+</div>
+
+<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+  <!-- Search -->
+  <div class="navbar-nav align-items-center badge border border-blue text-dark d-none d-sm-block">
+    <div class="nav-item d-flex flex-column">
+          <!-- <span class="fw-semibold mb-1"><%= user.fullname %></span> -->
+          <small class="text-muted p-1 mt-1">Số dư: <b class="text-danger"><%= totalMoney %></b> <span class="fw-bold">VNĐ</span></small>
+    </div>
+  </div>
+  <!-- /Search -->
+
+  <ul class="navbar-nav flex-row align-items-center ms-auto">
+    <!-- User -->
+    <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="avatar">
+                <img src="https://ui-avatars.com/api/?background=random&amp;name=<%= user.username %>" alt class="w-px-40 h-auto rounded" />
+              </div>
+              <div class="d-none d-sm-block ms-2 h-auto fw-bold text-uppercase text-muted">
+                <%= user.username %>
+              </div>
+            </div>            
+        </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a class="dropdown-item" href="/profile/info">
+            <i class="bx bx-user-circle me-2"></i>
+            <span class="align-middle">Tài khoản của tôi</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="/recharge/banking">
+            <i class="bx bxs-bank me-2"></i>
+            <span class="align-middle">Nạp tiền tài khoản</span>
+          </a>
+        </li>
+        <li>
+          <div class="dropdown-divider mx-3"></div>
+        </li>
+        <li>
+            <form method="post" action="/auth/logout">
+                <button class="dropdown-item" type="submit">
+                    <i class="bx bx-power-off me-2"></i>
+                    <span class="align-middle">Đăng xuất</span>
+                </button>
+            </form>
+        </li>
+      </ul>
+    </li>
+    <!--/ User -->
+  </ul>
+</div>
+</nav>
+ <!-- / Navbar -->

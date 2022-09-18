@@ -1,0 +1,347 @@
+/*
+* demo.css
+* File include item demo only specific css only
+******************************************************************************/
+
+.menu .app-brand.demo {
+  height: 64px;
+  margin-top: 12px;
+}
+
+.app-brand-logo.demo svg {
+  width: 22px;
+  height: 38px;
+}
+
+.app-brand-text.demo {
+  font-size: 1.75rem;
+  letter-spacing: -0.5px;
+  text-transform: lowercase;
+}
+
+/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
+/* Detached navbar */
+.layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {
+  padding-top: 76px !important;
+}
+/* Default navbar */
+.layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
+  padding-top: 64px !important;
+}
+
+/* Navbar page z-index issue solution */
+.content-wrapper .navbar {
+  z-index: auto;
+}
+
+/*
+* Content
+******************************************************************************/
+
+.demo-blocks > * {
+  display: block !important;
+}
+
+.demo-inline-spacing > * {
+  margin: 1rem 0.375rem 0 0 !important;
+}
+
+/* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
+.demo-vertical-spacing > * {
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-lg > * {
+  margin-top: 1.875rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-lg.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-xl > * {
+  margin-top: 5rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-xl.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.rtl-only {
+  display: none !important;
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+[dir='rtl'] .rtl-only {
+  display: block !important;
+}
+
+/*
+* Layout demo
+******************************************************************************/
+
+.layout-demo-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.layout-demo-placeholder img {
+  width: 900px;
+}
+.layout-demo-info {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.ribbon-title {
+  background: #007bff;
+  padding: 5px 12px;
+  box-shadow: 2px 5px 10px rgb(33 37 41 / 25%);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  position: absolute;
+  left: -1px;
+  top: 5px;
+  display: inline-block;
+}
+.ribbon-title.ribbon-primary::before {
+border-left-color: #007bff;
+border-top-color: #007bff;
+}
+.ribbon-title::before {
+content: "";
+position: absolute;
+right: -17px;
+top: 0;
+border: 14px solid transparent;
+}
+
+.ribbon-title.ribbon-primary::after {
+border-left-color: #007bff;
+border-bottom-color: #007bff;
+}
+.ribbon-title::after {
+content: "";
+position: absolute;
+right: -17px;
+bottom: 0;
+border: 14px solid transparent;
+}
+
+
+.btn-label-secondary {
+  color: #8592a3;
+  border-color: transparent;
+  background: #ebeef0;
+}
+.btn-label-secondary:hover {
+  border-color: transparent;
+  background: #788393;
+  color: #fff;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(133, 146, 163, 0.4);
+  transform: translateY(-1px);
+}
+.btn-label-secondary:focus, .btn-label-secondary.focus {
+  color: #fff;
+  background: #788393;
+  box-shadow: none !important;
+  transform: translateY(0);
+}
+.btn-label-secondary:active, .btn-label-secondary.active, .show > .btn-label-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #717c8b;
+  border-color: transparent;
+}
+.btn-label-secondary:active:focus, .btn-label-secondary.active:focus, .show > .btn-label-secondary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.btn-label-secondary.disabled, .btn-label-secondary:disabled {
+  box-shadow: none;
+}
+.home-notification {
+  max-height: 512px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.home-notification::-webkit-scrollbar-thumb {
+  background-color: #4c4c6a;
+  border-radius: 2px;
+}
+
+.home-notification::-webkit-scrollbar {
+  width: 4px;
+}
+@media (max-width: 768px) {
+  .home-notification {
+      max-height: 480px;
+  }
+}
+
+.home-notification-bank {
+  max-height: 440px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.home-notification-bank::-webkit-scrollbar-thumb {
+  background-color: #4c4c6a;
+  border-radius: 2px;
+}
+
+.home-notification-bank::-webkit-scrollbar {
+  width: 4px;
+}
+@media (max-width: 768px) {
+  .home-notification-bank {
+      max-height: 400px;
+  }
+}
+.animate-charcter
+{
+  background-image: linear-gradient(
+    -225deg,
+    #342568 0%,
+    #651eb1 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.content {
+  position: relative;
+}
+
+.content h2 {
+  color: #fff;
+  font-size: 8em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.content h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #03a9f4;
+}
+
+.content h2:nth-child(2) {
+  color: #03a9f4;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+.btn-shine {
+  color: #fff;
+  background: linear-gradient(to right, #4d4d4d 0, #fff 10%, #4d4d4d 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2.5s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
