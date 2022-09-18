@@ -194,11 +194,11 @@ const authController = {
                 var year = d.getFullYear();
                 var month = d.getMonth() + 1;
                 var day = d.getDate();
-                var hours = d.getHours();
+                var h = d.getHours();
                 var minute = d.getMinutes();
                 var second = d.getSeconds();
 
-                var time = `${year}-${month}-${day} ${hours}:${minute}:${second}`
+                var time = `${year}-${month}-${day} ${h}:${minute}:${second}`
                 //Update site log
                 const newLog = await new siteLog({
                     name: user.username,
