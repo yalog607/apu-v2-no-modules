@@ -178,13 +178,13 @@ const authController = {
                 res.clearCookie('token')
                 res.cookie("token" /* refreshToken */, accessToken /* refreshToken */, {
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                     path: "/",
                     sameSite: "strict"
                 })
                 res.cookie("tokenAPI" /* refreshToken */, refreshToken /* /* refreshToken */, {
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                     path: "/",
                     sameSite: "strict"
                 })
@@ -236,7 +236,7 @@ const authController = {
             refreshTokens.push(newRefreshToken)
             res.cookie("refreshToken", newRefreshToken, {
                 httpOnly: true,
-                secure: false,
+                secure: true,
                 path: "/",
                 sameSite: "strict"
             })
