@@ -95,14 +95,14 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Dịch vụ</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item <% if (index == 'facebook') { %> active <%= user.name %> <% } %>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxl-facebook-circle"></i>
                 <div data-i18n="Misc">Facebook</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="/service/facebook/like" class="menu-link">
+                    <a href="/facebook/like-sale" class="menu-link">
                         <div data-i18n="Error">Like</div>
                     </a>
                 </li>

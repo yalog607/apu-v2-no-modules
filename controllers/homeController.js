@@ -29,7 +29,7 @@ const dashboardController = {
                 posts.find({})
                     .then((post) => {
                         setTimeout(() => {
-                            res.render('home/dashboard', {user, img, currency, success: req.flash('success'), post: post.reverse(), totalMoney, totalBank, totalUsed, validAdmin: checkAdmin(rank, user.admin)})
+                            res.render('home/dashboard', {user, img, currency, success: req.flash('success'), post: post.reverse(), totalMoney, totalBank, totalUsed, validAdmin: checkAdmin(user.admin)})
                         }, 150)
                     })
                     .catch(err => {

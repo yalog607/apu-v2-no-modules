@@ -129,8 +129,7 @@ const authController = {
     // GENERATE REFRESH TOKEN
     generateRefreshToken: (user) => {
         return jwt.sign({
-            id: user.id,
-            admin: user.admin
+            id: user.id
         }, process.env.JWT_REFRESH_KEY, {
             expiresIn: '365d'
         })
@@ -174,15 +173,14 @@ const authController = {
                 refreshTokens.push(refreshToken)
                 const {password, ...others} = user._doc
                 const data = {accessToken, ...others}
-                res.clearCookie('username')
                 res.clearCookie('token')
-                res.cookie("token" /* refreshToken */, accessToken /* refreshToken */, {
+                res.cookie("token" ,accessToken, {
                     httpOnly: true,
                     secure: true,
                     path: "/",
                     sameSite: "strict"
                 })
-                res.cookie("tokenAPI" /* refreshToken */, refreshToken /* /* refreshToken */, {
+                res.cookie("tokenAPI" ,refreshToken, {
                     httpOnly: true,
                     secure: true,
                     path: "/",

@@ -47,6 +47,8 @@ app.set('views', path.join(__dirname, 'views'));
 // Route
 const route = require('./routes/server');
 route(app);
+
+// Cron
 const domain = `https://${process.env.DOMAIN}/recharge/api/momo`
 cron.schedule('* * * * *', () => {
     request(domain, (err, response, body) => {

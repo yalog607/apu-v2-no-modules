@@ -47,7 +47,7 @@ const profileController = {
                                             var lsmb = history.filter((historys) => {
                                                 return historys.type === "MB Bank";
                                             })
-                                            res.render('recharge/banking', {user, min, config, history, lsmomo: lsmomo.reverse(), momo, lsmb: lsmb.reverse(), mb, data, validAdmin: checkAdmin(rank, user.admin)})
+                                            res.render('recharge/banking', {user, min, config, history, lsmomo: lsmomo.reverse(), momo, lsmb: lsmb.reverse(), mb, data, validAdmin: checkAdmin(user.admin)})
                                         }, 150)
                                     })
                                     .catch(err => {

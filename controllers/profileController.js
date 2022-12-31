@@ -31,7 +31,7 @@ const profileController = {
                     .then(data => {
                         setTimeout(() => {
                             const GMT = user.createdAt.toGMTString();
-                            res.render('profile/info', {user, GMT, msg: req.flash('msg'), totalMoney, totalBank, totalUsed, rank, tokenAPI, validAdmin: checkAdmin(rank, user.admin), data: data.reverse()})
+                            res.render('profile/info', {user, GMT, msg: req.flash('msg'), totalMoney, totalBank, totalUsed, rank, tokenAPI, validAdmin: checkAdmin(user.admin), data: data.reverse()})
                         }, 150)
                     })
                     .catch(err => {
@@ -74,7 +74,7 @@ const profileController = {
                                 const ratedaily = numberFormatter.format(config.ratedaily);
                                 const ratenhaphanphoi = numberFormatter.format(config.ratenhaphanphoi);
                                 setTimeout(() => {
-                                    res.render('profile/upgrade', {user, ratectv, ratedaily, ratenhaphanphoi, config, totalMoney, rank, tokenAPI, validAdmin: checkAdmin(rank, user.admin), data})
+                                    res.render('profile/upgrade', {user, ratectv, ratedaily, ratenhaphanphoi, config, totalMoney, rank, tokenAPI, validAdmin: checkAdmin(user.admin), data})
                                 }, 150)
                             })
                             .catch(err => {
