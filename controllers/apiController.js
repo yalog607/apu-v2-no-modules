@@ -39,7 +39,7 @@ const profileController = {
                         .then(service => {
                             const total = service.rateservice * amount;
                             if(service.statusservice == 0) {
-                                req.flash("error", "Máy chủ tạm bảo trì, vui lòng chọn máy chủ khác!")
+                                req.flash("error", "Máy chủ bảo trì, vui lòng chọn gói dịch vụ khác!")
                                 return res.redirect('/facebook/like-sale')
                             }
                             if (user.totalMoney < total) {
