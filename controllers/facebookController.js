@@ -22,9 +22,15 @@ const profileController = {
                     .then((data) => {
                         ServerService.find({codeservice: "like_post_sale"})
                             .then(service => {
-                                setTimeout(() => {
-                                    res.render('facebook/likeSale', {user, err: req.flash('error'), success: req.flash('success'), service, data, totalMoney, totalBank, totalUsed, token, validAdmin: checkAdmin(user.admin)})
-                                }, 150)
+                                ClientOrder.find({name: user.username, react: "like"})
+                                    .then(order => {
+                                        setTimeout(() => {
+                                            res.render('facebook/likeSale', {user, order: order.reverse(), err: req.flash('error'), success: req.flash('success'), service, data, totalMoney, totalBank, totalUsed, token, validAdmin: checkAdmin(user.admin)})
+                                        }, 150)
+                                    })
+                                    .catch(err => {
+                                        console.log(`Lỗi database`)
+                                    });
                             })
                             .catch(err => {
                                 console.log(`Lỗi database`)

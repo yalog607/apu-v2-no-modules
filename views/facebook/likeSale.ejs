@@ -178,15 +178,16 @@
                                                     class="form-check-input pack"
                                                     id="sv<%= sv.serverservice %>"
                                                     detail="<%= sv.servername %>" data-rate="<%= sv.rateservice %>"
-                                                                            name="server_order" onchange="bill();" value="<%= sv.serverservice %>"
+                                                                            name="server_order" onchange="bill();" value="sv<%= sv.serverservice %>"
                                                                             reaction-show="like"><label
                                                     class="form-check-label"
                                                     for="sv<%= sv.serverservice %>"
                                                   >
-                                                  Sv<%= sv.serverservice %> (<%= sv.titleservice %>&nbsp;<b
-                                                  class="text-warning">( <% if (true) { %>
-                                                    <span>Hoạt động</span>
-                                                  <% } %> <%= sv.statusservice %>)
+                                                  Gói v<%= sv.serverservice %> (<%= sv.titleservice %>)&nbsp;<b
+                                                  class="text-warning">
+                                                    <% if (sv.statusservice == 0) { %>
+                                                      (Bảo trì)&nbsp;
+                                                    <% } %>
                                                     <span
                                                       class="badge badge-label bg-info"
                                                       >Giá <%= sv.rateservice %>đ</span
@@ -196,6 +197,14 @@
                                                 <% }); %>
                                           </div>
                                         </div>
+                                        <div class="form-check form-check-inline" hidden>
+                                          <label class="form-check-label " for="reaction0">
+                                              <input class="form-check-input checkbox d-none"
+                                                  type="radio" data-prices="101" id="reaction0"
+                                                  name="reaction" value="like" checked="checked">
+                                          </label>
+                                      </div>
+                                      <div id="detailServer"></div>
                                         <div
                                           class="row mb-3"
                                           style="display: none"
@@ -214,9 +223,10 @@
                                             <input
                                               type="number"
                                               id="amount"
+                                              name="amount"
                                               class="form-control"
-                                              value="1"
-                                              onkeyup="totalPayment()"
+                                              value="100"
+                                              onkeyup="bill();"
                                               placeholder="Nhập số lượng cần mua"
                                             />
                                           </div>
@@ -232,7 +242,7 @@
                                           <div class="col-lg-9">
                                             <textarea
                                               class="form-control"
-                                              rows="4"
+                                              rows="3"
                                               id="note"
                                               placeholder="Nhập ghi chú đơn hàng nếu có"
                                             ></textarea>
@@ -243,11 +253,11 @@
                                             class="alert alert-primary alert-dismissible alert-outline fade show"
                                             role="alert"
                                           >
-                                            <h5>Số dư của bạn: <b>123</b></h5>
+                                            <h5>Số dư của bạn: <b><%= totalMoney %>đ</b></h5>
                                             <h4>
                                               Số tiền cần thanh toán:
-                                              <b id="total" style="color: red"
-                                                >123</b
+                                              <b id="total_payment" style="color: red"
+                                                >0đ</b
                                               >
                                             </h4>
                                           </div>
@@ -256,15 +266,9 @@
                                           <div
                                             class="col-lg-12 fv-row text-center"
                                           >
-                                            <input
-                                              type="hidden"
-                                              id="token"
-                                              class="form-control"
-                                              value="5f414d42ada595e43b44d191aa43683e"
-                                            />
                                             <button
                                               type="button"
-                                              id="btnSubmit"
+                                              id="buy"
                                               class="btn btn-danger"
                                             >
                                               Thêm đơn
@@ -278,7 +282,7 @@
                                 <div class="col-lg-4 mt-3">
                                   <div class="card ribbon-box">
                                     <div class="card-body">
-                                      <div class="mb-5">
+                                      <div class="mb-3">
                                         <div class="fw-bold text-danger">
                                           LƯU Ý
                                         </div>
@@ -310,7 +314,66 @@
                             id="navs-pills-justified-profile"
                             role="tabpanel"
                           >
-                            <div class="row"></div>
+                            <div class="row mt-2">
+                              <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="home-notification">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table" id="dataTable">
+                                                    <thead class="bg-primary">
+                                                        <tr class="text-center table-dark shadow">
+                                                          <th class="text-white">ID</th>
+                                                          <th class="text-white">Thời gian</th>
+                                                          <th class="text-white">Mã đơn</th>
+                                                          <th class="text-white">Link bài viết</th>
+                                                          <th class="text-white">Máy chủ</th>
+                                                          <th class="text-white">Loại</th>
+                                                          <th class="text-white">Số lượng</th>
+                                                          <th class="text-white">Bắt đầu</th>
+                                                          <th class="text-white">Ghi chú</th>
+                                                          <th class="text-white">Tổng tiền</th>
+                                                          <th class="text-white">Trạng thái</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="text-center">
+                                                      <% order.forEach(function(orders){ %>
+                                                        <tr class="">
+                                                          <td><%= orders.orderId %></td>
+                                                          <td><%= orders.time %></td>
+                                                          <td><%= orders.codeOrder %></td>
+                                                          <td><p>
+                                                                  <a href="<%= orders.idPost %>" target="_blank" style="color: #696cff; text-decoration: none;"><%= orders.idPost %></a>
+                                                              </p>
+                                                          </td>
+                                                          <td><span class="badge bg-pip text-black"><%= orders.server %></span></td>
+                                                          <td><%= orders.react %></td>
+                                                          <td><span class="text-danger font-weight-bold"><%= orders.amount %></span> <sup>like</sup></td>
+                                                          <td><span class="text-danger font-weight-bold"><%= orders.start %></span> <sup>like</sup></td>
+                                                          <td><textarea class="form-control" readonly=""><%= orders.note %></textarea></td>
+                                                          <td><span class="text-danger font-weight-bold"><%= orders.total %></span> <sup>coin</sup></td>
+                                                          <td><span class="badge bg-success text-white"><%= orders.status %></span></td>
+                                                      </tr>
+                                                    <% }); %>
+                                                    <% if (order.length == 0) { %>
+                                                      <tr class="odd">
+                                                        <td valign="top" colspan="100%">
+                                                            <center>
+                                                                <img src="/assets/images/no-data.png" alt="" width="120"
+                                                                    height="120">
+                                                                <p>Không có dữ liệu để hiển thị</p>
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -358,5 +421,117 @@
     <script src="/assets/js/dashboards-analytics.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+      function getUID(elm) {
+      $('#buy').prop("disabled", true);
+      setTimeout(() => {
+          let link = $('[name=' + elm + ']').val();
+          if (!isURL(link)) {
+              $('#buy').prop("disabled", false);
+              return;
+          }
+          $('[name=' + elm + ']').prop("disabled", true).val('Đang xử lý');
+          $.ajax({
+              type: "GET",
+              url: "https://subgiare.vn/api/tool/get-uid-fb",
+              data: {
+                  link
+              },
+              dataType: "json",
+              success: function(response) {
+                  if (response.status === 200) {
+                      $('[name=' + elm + ']').prop("disabled", false).val(response.data);
+                  } else {
+                      $('[name=' + elm + ']').prop("disabled", false).val('');
+                  }
+                  $('#buy').prop("disabled", false);
+              }
+          });
+      }, 100);
+  }
+  function detailServer(text) {
+      if (text) {
+          $('#detailServer').show().html(`<div class="alert bg-warning text-white detailServer mt-2 mb-2 role="alert">
+            - <b>${text}</b></div>`);
+      } else {}
+  }
+
+  function resetReaction(server = null) {
+      let reactions = $('[name=reaction]');
+      let shows = server.attr('reaction-show');
+      shows = !shows ? [] : shows.split(',');
+      $.each(reactions, function(index, reaction) {
+          let elm = $(reaction).parent().parent();
+          if (!server.val() || !shows.length) {
+              elm.show();
+          } else {
+          if(shows.indexOf($(reaction).val()) >= 0){
+              elm.show();
+          }else{
+              elm.hide();
+          }
+          }
+      });
+  }
+
+  function bill() {
+      let server_order = $('input[name=server_order]:checked');
+      resetReaction(server_order);
+      let detail = server_order.attr('detail');
+      detailServer(detail);
+      price = server_order.data("rate");
+      server_order = server_order.val();
+      if (!server_order) return;
+      const numberFormatter = Intl.NumberFormat('en-US');
+      let amount = $('[name=amount]').val();
+      let total_payment = Math.round(amount * price) || 0;
+      const total = `${numberFormatter.format(total_payment)}đ`;
+      $('#total_payment').html(total);
+      
+  }
+  $(document).ready(function() {
+      bill();
+  });
+
+  $('#buy').click((e) => {
+      e.preventDefault();
+      Swal.fire({
+          title: 'Xác nhận thanh toán!',
+          text: "Bạn có muốn thanh toán đơn hàng? Chúng tôi sẽ không hoàn tiền với đơn đã thanh toán.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#7066e0',
+          confirmButtonText: 'Tôi đồng ý',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Đóng',
+      }).then((result) => {
+      if (result.isConfirmed) {
+          document.getElementById('form-post-like').submit();
+      }
+    })
+  })
+  </script>    
+  <% if (success.length > 0) { %>
+    <script>
+      Swal.fire({
+        title: 'Thông báo',
+        confirmButtonColor: '#007bff',
+        text: 'Thêm đơn thành công',
+        icon: 'success',
+        confirmButtonText: 'Tôi đã hiểu',
+      })
+  </script>
+  <% } %>
+  <% if (err.length > 0) { %>
+    <script>
+      Swal.fire({
+        title: 'Có lỗi xảy ra',
+        confirmButtonColor: '#007bff',
+        text: '<%= err %>',
+        icon: 'error',
+        confirmButtonText: 'Tôi đã hiểu',
+      })
+  </script>
+  <% } %>
   </body>
 </html>

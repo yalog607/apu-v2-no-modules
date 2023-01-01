@@ -20,19 +20,19 @@ const profileController = {
                     const note = req.body.note;                    
                     if (!linkPost) {
                         req.flash("error", "Trường URL bài viết không được bỏ trống!")
-                        return res.redirect('/service/facebook/like')
+                        return res.redirect('/facebook/like-sale')
                     }
                     if (!serverOrder) {
                         req.flash("error", "Trường máy chủ không được bỏ trống!")
-                        return res.redirect('/service/facebook/like')
+                        return res.redirect('/facebook/like-sale')
                     }
                     if (!amount) {
                         req.flash("error", "Trường số lượng không được bỏ trống!")
-                        return res.redirect('/service/facebook/like')
+                        return res.redirect('/facebook/like-sale')
                     }
                     if (amount < 100) {
                         req.flash("error", "Trường số lượng phải tối thiểu là 100!")
-                        return res.redirect('/service/facebook/like')
+                        return res.redirect('/facebook/like-sale')
                     }
                     const server = serverOrder.slice(2);
                     ServerService.findOne({codeservice: "like_post_sale", serverservice: server})
@@ -40,17 +40,17 @@ const profileController = {
                             const total = service.rateservice * amount;
                             if(service.statusservice == 0) {
                                 req.flash("error", "Máy chủ tạm bảo trì, vui lòng chọn máy chủ khác!")
-                                return res.redirect('/service/facebook/like')
+                                return res.redirect('/facebook/like-sale')
                             }
                             if (user.totalMoney < total) {
                                 req.flash("error", "Số coin của bạn không đủ để thanh toán, vui lòng nạp thêm!")
-                                return res.redirect('/service/facebook/like')
+                                return res.redirect('/facebook/like-sale')
                             }
                             Config.findOne({})
                                 .then(config => {
                                     if (!config.apitokenadmin) {
                                         req.flash("error", "Có lỗi xảy ra tại máy chủ. Vui lòng liên hệ quản trị viên!")
-                                        return res.redirect('/service/facebook/like')
+                                        return res.redirect('/facebook/like-sale')
                                     }
                                     const options = {
                                         method: 'POST',
@@ -102,10 +102,10 @@ const profileController = {
                                             const saveClientOrder = await newClientOrder.save();
                                             //
                                             req.flash("success", "Thanh toán đơn hàng thành công!")
-                                            return res.status(200).redirect('/service/facebook/like');
+                                            return res.status(200).redirect('/facebook/like-sale');
                                         }else {
                                             req.flash("error", "Có lỗi xảy ra trong quá trình lên đơn. Vui lòng liên hệ quản trị viên!")
-                                            return res.redirect('/service/facebook/like')
+                                            return res.redirect('/facebook/like-sale')
                                         }
                                     });
                                 })
