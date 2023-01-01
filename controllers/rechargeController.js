@@ -14,18 +14,6 @@ const profileController = {
             .then((user) => {
                 const numberFormatter = Intl.NumberFormat('en-US');
                 totalMoney = numberFormatter.format(user.totalMoney);
-                var rank;
-                if (user.rank === 4) {
-                    rank = "Quản trị viên"
-                } else if (user.rank === 1) {
-                    rank = "Cộng tác viên"
-                }else if (user.rank === 2) {
-                    rank = "Đại lý"
-                }else if (user.rank === 3) {
-                    rank = "Nhà phân phối"
-                }else {
-                   rank = "Thành viên"
-                }
                 Bank.find({})
                     .then((data) => {
                         HistoryBank.find({name: user.username})
@@ -34,7 +22,6 @@ const profileController = {
                                     .then(config => {
                                         setTimeout(() => {
                                             const numberFormatter = Intl.NumberFormat('en-US');
-                                            const min = numberFormatter.format(data.naptoithieu);
                                             var momo = data.filter((datas) => {
                                                 return datas.type === "Momo";
                                             })
@@ -47,7 +34,7 @@ const profileController = {
                                             var lsmb = history.filter((historys) => {
                                                 return historys.type === "MB Bank";
                                             })
-                                            res.render('recharge/banking', {user, min, config, history, lsmomo: lsmomo.reverse(), momo, lsmb: lsmb.reverse(), mb, data, validAdmin: checkAdmin(user.admin)})
+                                            res.render('recharge/banking', {user, config, history, lsmomo: lsmomo.reverse(), momo, lsmb: lsmb.reverse(), mb, data, validAdmin: checkAdmin(user.admin)})
                                         }, 150)
                                     })
                                     .catch(err => {

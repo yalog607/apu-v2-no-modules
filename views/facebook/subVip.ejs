@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Mua Like Facebook</title>
+    <title>Mua Follow Facebook</title>
 
     <meta name="description" content="" />
 
@@ -90,7 +90,7 @@
                       <div
                         class="btn-shine badge border-bottom border-2 border-blue p-1"
                       >
-                        Mua like (Sale)
+                        Mua follow (Vip)
                       </div>
                     </div>
                     <div class="card-body">
@@ -136,13 +136,13 @@
                                 <div class="col-lg-8 mt-3">
                                   <div class="card ribbon-box">
                                     <div class="card-body">
-                                      <form id="form-post-like" action="/api/service/facebook/like-post-sale/order" method="POST" style="font-size: 15px">
+                                      <form id="form-post-like" action="/api/service/facebook/sub-vip/order" method="POST" style="font-size: 15px">
                                         <div class="row mb-3">
                                           <div class="col-lg-3">
                                             <label
                                               for="url"
                                               class="form-label"
-                                              >Link bài viết:</label
+                                              >ID Facebook:</label
                                             >
                                           </div>
                                           <div class="col-lg-9">
@@ -150,8 +150,8 @@
                                               type="url"
                                               id="url"
                                               class="form-control"
-                                              placeholder="Nhập link bài viết cần tăng"
-                                              name="link_post"
+                                              placeholder="Nhập id facebook cần tăng follow"
+                                              name="idfb"
                                             />
                                           </div>
                                         </div>
@@ -197,13 +197,6 @@
                                                 <% }); %>
                                           </div>
                                         </div>
-                                        <div class="form-check form-check-inline" hidden>
-                                          <label class="form-check-label " for="reaction0">
-                                              <input class="form-check-input checkbox d-none"
-                                                  type="radio" data-prices="101" id="reaction0"
-                                                  name="reaction" value="like" checked="checked">
-                                          </label>
-                                      </div>
                                       <div id="detailServer"></div>
                                         <div
                                           class="row mb-3"

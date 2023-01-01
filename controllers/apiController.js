@@ -43,7 +43,7 @@ const profileController = {
                                 return res.redirect('/facebook/like-sale')
                             }
                             if (user.totalMoney < total) {
-                                req.flash("error", "Số coin của bạn không đủ để thanh toán, vui lòng nạp thêm!")
+                                req.flash("error", "Số dư của bạn không đủ để thanh toán, vui lòng nạp thêm!")
                                 return res.redirect('/facebook/like-sale')
                             }
                             Config.findOne({})

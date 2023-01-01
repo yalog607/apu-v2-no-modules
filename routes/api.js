@@ -8,7 +8,7 @@ const middlewareCheckToken = require('../middleware/middlewareCheckToken');
 // router.get('/get/service/facebook/sub-vip/list', middlewareCheckToken.checkTokenWhenGoHome, apiController.subVipList);
 
 // POST
-router.post('/post/service/facebook/like-post-sale/order', middlewareCheckToken.checkTokenWhenGoHome, apiController.likePostSaleOrder);
-router.post('/post/service/facebook/sub-vip/order', middlewareCheckToken.checkTokenWhenGoHome, apiController.subVipOrder);
+router.post('/service/facebook/like-post-sale/order', middlewareCheckToken.checkTokenWhenGoHome, apiController.likePostSaleOrder);
+router.post('/service/facebook/sub-vip/order', middlewareCheckToken.checkTokenWhenGoHome, apiController.subVipOrder);
 
 module.exports = router;
