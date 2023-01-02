@@ -257,13 +257,19 @@ const authController = {
             )
             const timeMs = 2000;
             const time = timeMs / 1000;
+            if (!req.body.old_password && !req.body.password && !req.body.confirm_password) {
+                req.flash('msg', `Vui lòng điền đầy đủ các thông tin`)
+                return res.redirect('/profile/info')
+            }
             if (!req.body.old_password) {
                 req.flash('msg', `Trường mật khẩu cũ không được bỏ trống`)
                 return res.redirect('/profile/info')
-            }if (!req.body.password) {
+            }
+            if (!req.body.password) {
                 req.flash('msg', `Trường mật khẩu mới không được bỏ trống.`)
                 return res.redirect('/profile/info')
-            }if (!req.body.confirm_password) {
+            }
+            if (!req.body.confirm_password) {
                 req.flash('msg', `Trường nhập lại mật khẩu mới không được bỏ trống.`)
                 return res.redirect('/profile/info')
             }
