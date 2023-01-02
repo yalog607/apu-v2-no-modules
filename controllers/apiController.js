@@ -132,19 +132,19 @@ const profileController = {
                     const note = req.body.note;
                     if (!idfb) {
                         req.flash("error", "Trường ID facebook không được bỏ trống!")
-                        return res.redirect('/service/facebook/sub-vip')
+                        return res.redirect('/facebook/sub-vip')
                     }
                     if (!serverOrder) {
                         req.flash("error", "Trường máy chủ không được bỏ trống!")
-                        return res.redirect('/service/facebook/sub-vip')
+                        return res.redirect('/facebook/sub-vip')
                     }
                     if (!amount) {
                         req.flash("error", "Trường số lượng không được bỏ trống!")
-                        return res.redirect('/service/facebook/sub-vip')
+                        return res.redirect('/facebook/sub-vip')
                     }
                     if (amount < 500) {
                         req.flash("error", "Trường số lượng phải tối thiểu là 500!")
-                        return res.redirect('/service/facebook/sub-vip')
+                        return res.redirect('/facebook/sub-vip')
                     }
                     const server = serverOrder.slice(2)
                     ServerService.findOne({codeservice: "sub_vip", serverservice: server})
@@ -152,17 +152,17 @@ const profileController = {
                             const total = service.rateservice * amount;
                             if(service.statusservice == 0) {
                                 req.flash("error", "Máy chủ tạm bảo trì, vui lòng chọn máy chủ khác!")
-                                return res.redirect('/service/facebook/sub-vip')
+                                return res.redirect('/facebook/sub-vip')
                             }
                             if (user.totalMoney < total) {
                                 req.flash("error", "Số coin của bạn không đủ để thanh toán, vui lòng nạp thêm!")
-                                return res.redirect('/service/facebook/sub-vip')
+                                return res.redirect('/facebook/sub-vip')
                             }
                             Config.findOne({})
                                 .then(config => {
                                     if (!config.apitokenadmin) {
                                         req.flash("error", "Có lỗi xảy ra tại máy chủ. Vui lòng liên hệ quản trị viên!")
-                                        return res.redirect('/service/facebook/sub-vip')
+                                        return res.redirect('/facebook/sub-vip')
                                     }
                                     const options = {
                                         method: 'POST',
@@ -183,6 +183,7 @@ const profileController = {
                                         const Body = JSON.parse(body)
                                         if (Body.status === true) {
                                             const Response = Body.data;
+                                            console.log(Response);
                                             User.updateOne({_id: userData.id}, {
                                                 totalMoney: Number(user.totalMoney) - Number(total),
                                                 totalUsed: Number(user.totalUsed) + Number(total)
@@ -209,14 +210,14 @@ const profileController = {
                                                 note: Response.note,
                                                 total: total,
                                                 status: "Đã thanh toán"
-                                            })
+                                            })                                            
                                             const saveClientOrder = await newClientOrder.save();
                                             //
                                             req.flash("success", "Thanh toán đơn hàng thành công!")
-                                            return res.status(200).redirect('/service/facebook/sub-vip');
+                                            return res.status(200).redirect('/facebook/sub-vip');
                                         }else {
                                             req.flash("error", "Có lỗi xảy ra trong quá trình lên đơn. Vui lòng liên hệ quản trị viên!")
-                                            return res.redirect('/service/facebook/sub-vip')
+                                            return res.redirect('/facebook/sub-vip')
                                         }
                                     });
                                 })

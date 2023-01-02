@@ -18,6 +18,7 @@
     <title>Mua Like Facebook</title>
 
     <meta name="description" content="" />
+    <%- include('../main') %>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,10 +60,8 @@
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    
     <script src="/assets/js/config.js"></script>
-    <%- include('../main') %>
   </head>
 
   <body>
@@ -330,7 +329,6 @@
                                                           <th class="text-white">Máy chủ</th>
                                                           <th class="text-white">Loại</th>
                                                           <th class="text-white">Số lượng</th>
-                                                          <th class="text-white">Bắt đầu</th>
                                                           <th class="text-white">Ghi chú</th>
                                                           <th class="text-white">Tổng tiền</th>
                                                           <th class="text-white">Trạng thái</th>
@@ -346,10 +344,9 @@
                                                                   <a href="<%= orders.idPost %>" target="_blank" style="color: #696cff; text-decoration: none;"><%= orders.idPost %></a>
                                                               </p>
                                                           </td>
-                                                          <td><span class="badge bg-pip text-black"><%= orders.server %></span></td>
+                                                          <td><span class="badge bg-info text-white"><%= orders.server %></span></td>
                                                           <td><%= orders.react %></td>
-                                                          <td><span class="text-danger font-weight-bold"><%= orders.amount %></span> <sup>like</sup></td>
-                                                          <td><span class="text-danger font-weight-bold"><%= orders.start %></span> <sup>like</sup></td>
+                                                          <td><span class="text-danger font-weight-bold"><%= orders.amount %></span></td>
                                                           <td><textarea class="form-control" readonly=""><%= orders.note %></textarea></td>
                                                           <td><span class="text-danger font-weight-bold"><%= orders.total %></span> <sup>coin</sup></td>
                                                           <td><span class="badge bg-success text-white"><%= orders.status %></span></td>
