@@ -131,180 +131,149 @@
                             role="tabpanel"
                           >
                             <div class="row">
-                              <div class="row">
-                                <div class="col-lg-8 mt-3">
-                                  <div class="card ribbon-box">
-                                    <div class="card-body">
-                                      <form id="form-post-like" action="/api/service/facebook/like-post-sale/order" method="POST" style="font-size: 15px">
-                                        <div class="row mb-3">
-                                          <div class="col-lg-3">
-                                            <label
-                                              for="url"
-                                              class="form-label"
-                                              >Link bài viết:</label
-                                            >
-                                          </div>
-                                          <div class="col-lg-9">
-                                            <input
-                                              type="url"
-                                              id="url"
-                                              class="form-control"
-                                              placeholder="Nhập link bài viết cần tăng"
-                                              name="link_post"
-                                            />
-                                          </div>
+                              <div class="col-lg-12 mt-3">
+                                <div class="card ribbon-box">
+                                  <div class="card-body">
+                                    <form id="form-post-like" action="/api/service/facebook/like-post-sale/order" method="POST" style="font-size: 15px">
+                                      <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                          <label
+                                            for="url"
+                                            class="form-label"
+                                            >Link bài viết:</label
+                                          >
                                         </div>
-                                        <style>
-                                          .pack:hover {
-                                            color: #fff;
-                                            box-shadow: inset 200px 0 0 0
-                                              #54b3d6;
-                                          }
-                                        </style>
-                                        <div class="row mb-3">
-                                          <div class="col-lg-3">
-                                            <label
-                                              for="nameInput"
-                                              class="form-label"
-                                              >Gói dịch vụ</label
-                                            >
-                                          </div>
-                                          <div class="col-lg-9">
-                                            <% service.forEach(function(sv){ %>
-                                                <div class="form-check">
-                                                  <input
-                                                    type="radio"
-                                                    class="form-check-input pack"
-                                                    id="sv<%= sv.serverservice %>"
-                                                    detail="<%= sv.servername %>" data-rate="<%= sv.rateservice %>"
-                                                                            name="server_order" onchange="bill();" value="sv<%= sv.serverservice %>"
-                                                                            reaction-show="like"><label
-                                                    class="form-check-label"
-                                                    for="sv<%= sv.serverservice %>"
-                                                  >
-                                                  Gói v<%= sv.serverservice %> (<%= sv.titleservice %>)&nbsp;<b
-                                                  class="text-warning">
-                                                    <% if (sv.statusservice == 0) { %>
-                                                      (Bảo trì)&nbsp;
-                                                    <% } %>
-                                                    <span
-                                                      class="badge badge-label bg-info"
-                                                      >Giá <%= sv.rateservice %>đ</span
-                                                    ></b>
-                                                  </label>
-                                                </div>
-                                                <% }); %>
-                                          </div>
+                                        <div class="col-lg-9">
+                                          <input
+                                            type="url"
+                                            id="url"
+                                            class="form-control"
+                                            placeholder="Nhập link bài viết cần tăng"
+                                            name="link_post"
+                                          />
                                         </div>
-                                        <div class="form-check form-check-inline" hidden>
-                                          <label class="form-check-label " for="reaction0">
-                                              <input class="form-check-input checkbox d-none"
-                                                  type="radio" data-prices="101" id="reaction0"
-                                                  name="reaction" value="like" checked="checked">
-                                          </label>
                                       </div>
-                                      <div id="detailServer"></div>
+                                      <style>
+                                        .pack:hover {
+                                          color: #fff;
+                                          box-shadow: inset 200px 0 0 0
+                                            #54b3d6;
+                                        }
+                                      </style>
+                                      <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                          <label
+                                            for="nameInput"
+                                            class="form-label"
+                                            >Gói dịch vụ</label
+                                          >
+                                        </div>
+                                        <div class="col-lg-9">
+                                          <% service.forEach(function(sv){ %>
+                                              <div class="form-check">
+                                                <input
+                                                  type="radio"
+                                                  class="form-check-input pack"
+                                                  id="sv<%= sv.serverservice %>"
+                                                  detail="<%= sv.servername %>" data-rate="<%= sv.rateservice %>"
+                                                                          name="server_order" onchange="bill();" value="sv<%= sv.serverservice %>"
+                                                                          reaction-show="like"><label
+                                                  class="form-check-label"
+                                                  for="sv<%= sv.serverservice %>"
+                                                >
+                                                Gói v<%= sv.serverservice %> (<%= sv.titleservice %>)&nbsp;<b
+                                                class="text-warning">
+                                                  <% if (sv.statusservice == 0) { %>
+                                                    (Bảo trì)&nbsp;
+                                                  <% } %>
+                                                  <span
+                                                    class="badge badge-label bg-info"
+                                                    >Giá <%= sv.rateservice %>đ</span
+                                                  ></b>
+                                                </label>
+                                              </div>
+                                              <% }); %>
+                                        </div>
+                                      </div>
+                                      <div class=" form-check form-check-inline" hidden>
+                                        <label class="form-check-label " for="reaction0">
+                                            <input class="form-check-input checkbox d-none" type="radio" data-prices="101" id="reaction0" name="reaction" value="like" checked="">
+                                        </label>
+                                    </div>
+                                    <div id="detailServer"></div>
+                                      <div
+                                        class="row mb-3"
+                                        style="display: none"
+                                        id="show_comment"
+                                      >
+                                      </div>
+                                      <div id="show_soluong" class="row mb-3">
+                                        <div class="col-lg-3">
+                                          <label
+                                            for="nameInput"
+                                            class="form-label"
+                                            >Số lượng cần mua</label
+                                          >
+                                        </div>
+                                        <div class="col-lg-9">
+                                          <input
+                                            type="number"
+                                            id="amount"
+                                            name="amount"
+                                            class="form-control"
+                                            value="100"
+                                            onkeyup="bill();"
+                                            placeholder="Nhập số lượng cần mua"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                          <label
+                                            for="nameInput"
+                                            class="form-label"
+                                            >Ghi chú đơn hàng</label
+                                          >
+                                        </div>
+                                        <div class="col-lg-9">
+                                          <textarea
+                                            class="form-control"
+                                            rows="3"
+                                            id="note"
+                                            placeholder="Nhập ghi chú đơn hàng nếu có"
+                                          ></textarea>
+                                        </div>
+                                      </div>
+                                      <div class="form-group text-center">
                                         <div
-                                          class="row mb-3"
-                                          style="display: none"
-                                          id="show_comment"
+                                          class="alert alert-primary alert-dismissible alert-outline fade show"
+                                          role="alert"
                                         >
-                                        </div>
-                                        <div id="show_soluong" class="row mb-3">
-                                          <div class="col-lg-3">
-                                            <label
-                                              for="nameInput"
-                                              class="form-label"
-                                              >Số lượng cần mua</label
+                                          <h5>Số dư của bạn: <b><%= totalMoney %>đ</b></h5>
+                                          <h4>
+                                            Số tiền cần thanh toán:
+                                            <b id="total_payment" style="color: red"
+                                              >0đ</b
                                             >
-                                          </div>
-                                          <div class="col-lg-9">
-                                            <input
-                                              type="number"
-                                              id="amount"
-                                              name="amount"
-                                              class="form-control"
-                                              value="100"
-                                              onkeyup="bill();"
-                                              placeholder="Nhập số lượng cần mua"
-                                            />
-                                          </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                          <div class="col-lg-3">
-                                            <label
-                                              for="nameInput"
-                                              class="form-label"
-                                              >Ghi chú đơn hàng</label
-                                            >
-                                          </div>
-                                          <div class="col-lg-9">
-                                            <textarea
-                                              class="form-control"
-                                              rows="3"
-                                              id="note"
-                                              placeholder="Nhập ghi chú đơn hàng nếu có"
-                                            ></textarea>
-                                          </div>
-                                        </div>
-                                        <div class="form-group text-center">
-                                          <div
-                                            class="alert alert-primary alert-dismissible alert-outline fade show"
-                                            role="alert"
-                                          >
-                                            <h5>Số dư của bạn: <b><%= totalMoney %>đ</b></h5>
-                                            <h4>
-                                              Số tiền cần thanh toán:
-                                              <b id="total_payment" style="color: red"
-                                                >0đ</b
-                                              >
-                                            </h4>
-                                          </div>
-                                        </div>
-                                        <div class="form-group row">
-                                          <div
-                                            class="col-lg-12 fv-row text-center"
-                                          >
-                                            <button
-                                              type="button"
-                                              id="buy"
-                                              class="btn btn-danger"
-                                            >
-                                              Thêm đơn
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-4 mt-3">
-                                  <div class="card ribbon-box">
-                                    <div class="card-body">
-                                      <div class="mb-3">
-                                        <div class="fw-bold text-danger">
-                                          LƯU Ý
+                                          </h4>
                                         </div>
                                       </div>
-                                      <p>Chú ý:</p>
-
-                                      <p>
-                                        - Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy... Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.
-                                      </p>
-                                      <p>
-                                        - Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.
-                                      </p>
-                                      <p>
-                                        - Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.
-                                      </p>
-                                      <p>
-                                        - Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.
-                                      </p>
-                                    </div>
+                                      <div class="form-group row">
+                                        <div
+                                          class="col-lg-12 fv-row text-center"
+                                        >
+                                          <button
+                                            type="button"
+                                            id="buy"
+                                            class="btn btn-danger"
+                                          >
+                                            Thêm đơn
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </form>
                                   </div>
                                 </div>
-                                <br />
-                                <center></center>
                               </div>
                             </div>
                           </div>
