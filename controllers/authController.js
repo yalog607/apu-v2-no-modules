@@ -92,7 +92,7 @@ const authController = {
                     var minute = d.getMinutes();
                     var second = d.getSeconds();
         
-                    var time = `${d.toLocaleString()}`
+                    var time = `${year}-${month}-${day} ${hour}:${minute}:${second}`
                     //Update site log
                     const newLog = await new siteLog({
                         name: req.body.username,
@@ -196,7 +196,7 @@ const authController = {
                 var minute = d.getMinutes();
                 var second = d.getSeconds();
 
-                var time = `${year}-${month}-${day} ${h}:${minute}:${second}`
+                var time = `${d.toLocaleString()}}`
                 //Update site log
                 const newLog = await new siteLog({
                     name: user.username,
