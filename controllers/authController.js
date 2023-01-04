@@ -88,8 +88,8 @@ const authController = {
                     var year = d.getFullYear();
                     var month = d.getMonth() + 1;
                     var day = d.getDate();
-                    var hour = d.getHours();
-                    var minute = d.getMinutes();
+                    var hour = d.getUTCHours();
+                    var minute = d.getUTCMinutes();
                     var second = d.getSeconds();
         
                     var time = `${year}-${month}-${day} ${hour}:${minute}:${second}`
