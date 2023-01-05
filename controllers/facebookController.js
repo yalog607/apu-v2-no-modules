@@ -13,7 +13,7 @@ const profileController = {
         const token = req.cookies.token;
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 const totalMoney = numberFormatter.format(user.totalMoney);
                 const totalBank = numberFormatter.format(user.totalBank);
                 const totalUsed = numberFormatter.format(user.totalUsed);
@@ -50,7 +50,7 @@ const profileController = {
         const token = req.cookies.token;
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 const totalMoney = numberFormatter.format(user.totalMoney);
                 const totalBank = numberFormatter.format(user.totalBank);
                 Config.findOne({})

@@ -10,7 +10,7 @@ const profileController = {
         const tokenAPI = req.cookies.tokenAPI;
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 const totalMoney = numberFormatter.format(user.totalMoney);
                 const totalBank = numberFormatter.format(user.totalBank);
                 const totalUsed = numberFormatter.format(user.totalUsed);
@@ -50,7 +50,7 @@ const profileController = {
         const tokenAPI = req.cookies.tokenAPI;
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 totalMoney = numberFormatter.format(user.totalMoney);
                 var rank;
                 if (user.rank === 4) {
@@ -69,7 +69,7 @@ const profileController = {
                     .then(data => {
                         Config.findOne({})
                             .then(config => {
-                                const numberFormatter = Intl.NumberFormat('en-US');
+                                const numberFormatter = Intl.NumberFormat();
                                 const ratectv = numberFormatter.format(config.ratectv);
                                 const ratedaily = numberFormatter.format(config.ratedaily);
                                 const ratenhaphanphoi = numberFormatter.format(config.ratenhaphanphoi);

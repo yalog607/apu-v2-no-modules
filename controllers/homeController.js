@@ -8,7 +8,7 @@ const dashboardController = {
         const userData = jwt.verify(req.cookies.token, process.env.JWT_ACCESS_KEY);
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 const totalMoney = numberFormatter.format(user.totalMoney);
                 const totalBank = numberFormatter.format(user.totalBank);
                 const totalUsed = numberFormatter.format(user.totalUsed);

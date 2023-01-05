@@ -448,7 +448,7 @@
       price = server_order.data("rate");
       server_order = server_order.val();
       if (!server_order) return;
-      const numberFormatter = Intl.NumberFormat('en-US');
+      const numberFormatter = Intl.NumberFormat();
       let amount = $('[name=amount]').val();
       let total_payment = Math.round(amount * price) || 0;
       const total = `${numberFormatter.format(total_payment)}đ`;

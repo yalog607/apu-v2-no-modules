@@ -12,7 +12,7 @@ const profileController = {
         const token = req.cookies.token;
         User.findOne({_id: userData.id})
             .then((user) => {
-                const numberFormatter = Intl.NumberFormat('en-US');
+                const numberFormatter = Intl.NumberFormat();
                 totalMoney = numberFormatter.format(user.totalMoney);
                 Bank.find({})
                     .then((data) => {
@@ -21,7 +21,7 @@ const profileController = {
                                 Config.findOne({})
                                     .then(config => {
                                         setTimeout(() => {
-                                            const numberFormatter = Intl.NumberFormat('en-US');
+                                            const numberFormatter = Intl.NumberFormat();
                                             var momo = data.filter((datas) => {
                                                 return datas.type === "Momo";
                                             })
@@ -89,7 +89,7 @@ const profileController = {
                             HistoryBank.find({bankcode: magd})
                                 .then(async(bank) => {
                                     if (bank == "") {
-                                        const numberFormatter = Intl.NumberFormat('en-US');
+                                        const numberFormatter = Intl.NumberFormat();
                                         const tienbank = numberFormatter.format(sotien);
                                         const newHistoryBank = await new HistoryBank({
                                             name: user.username,
